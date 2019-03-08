@@ -15,9 +15,7 @@ function errorHandler(error, message) {
   }
 }
 
-bot.log = (text) => text.split('\n').forEach(line => {
-  console.log(`@${bot.tag}: {line}`)
-})
+bot.log = (text) => console.log(`@${bot.tag}: ${text}`)
 
 const files = fs.readdirSync('./commands')
 files.forEach(file => {
@@ -25,6 +23,13 @@ files.forEach(file => {
   list.forEach(bot.commands.add)
   console.log('> File loaded ' + file)
 })
+
+function setDiscordActivity() {
+  bot.setActivity({
+    name: 'Hello.',
+    type: 1
+  })
+}
 
 bot.on('ready', () => bot.log('Ready to go.'))
 
