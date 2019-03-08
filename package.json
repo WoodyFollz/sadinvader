@@ -1,0 +1,18 @@
+{
+  "name": "leanvoid",
+  "version": "1.0.0",
+  "description": "Test Bot for features",
+  "main": "index.js",
+  "scripts": {
+    "test": "exit"
+  },
+  "keywords": [
+    "testbot",
+    "noobs"
+  ],
+  "author": "Danny Hpy",
+  "license": "ISC",
+  "dependencies": {
+    "discord.js": "^11.4.2"
+  }
+}
