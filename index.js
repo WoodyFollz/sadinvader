@@ -35,6 +35,7 @@ bot.on('ready', () => bot.log('Ready to go.'))
 
 bot.on('message', async(message) => {
   const prefixes = process.env.PREFIXES.split(',')
+  prefixes.push(`<@${bot.user.id}>`)
   const content  = message.content.toLowerCase()
   
   var prefix = prefixes.filter(x => content.startsWith(x))[0]
