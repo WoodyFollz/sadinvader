@@ -6,7 +6,7 @@ async function hi(message) {
   return this.reply('hello!')
 }
 
-exports = [{
+module.exports = () => [{
   name: 'ping',
   callback: ping
 }, {

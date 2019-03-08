@@ -3,7 +3,7 @@ const fs      = require('fs')
 
 const bot = new Discord.Client()
 bot.commands = require('./utils/commandhandler.js')
-bot.errors = {}
+bot.errors = []
 
 function errorHandler(error, message) {
   var id = bot.errors.length
@@ -21,9 +21,9 @@ bot.log = (text) => text.split('\n').forEach(line => {
 
 const files = fs.readdirSync('./commands')
 files.forEach(file => {
-  var array = require('./commands/' + file)
-  array.forEach(bot.commands.add)
-  bot.log('File loaded ' + file)
+  var list = require('./commands/' + file)(bot)
+  list.forEach(bot.commands.add)
+  console.log('> File loaded ' + file)
 })
 
 bot.on('ready', () => bot.log('Ready to go.'))
