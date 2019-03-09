@@ -1,5 +1,9 @@
 const Discord = require('discord.js')
 
+// Declaring objects
+exports.members = {}
+
+// Utils functions
 function sortABCOrder(a, b) {
 	a = a.user.tag.toLowerCase()
 	b = b.user.tag.toLowerCase()
