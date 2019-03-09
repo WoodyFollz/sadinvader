@@ -1,5 +1,6 @@
 const Discord = require('discord.js')
-const utils = require('../utils/discord.js')
+const moment  = require('moment')
+const utils   = require('../utils/discord.js')
 
 async function userinfo(message, ...string) {
   var member
@@ -14,9 +15,10 @@ async function userinfo(message, ...string) {
                          member.user.avatarURL)
               .setThumbnail(member.user.avatarURL)
               .setTitle('User Information')
-              .addField('Joined guild at', member.joinedAt)
+              .addField('Joined guild at',
+                        moment(member.joinedTimestamp).fromNow())
               .addField('Created account at',
-                        member.user.createdAt)
+                        moment(member.user.createdTimestamp).fromNow())
               .setColor(member.displayHexColor)
               .setFooter(`ID: ${member.id}`)
   return this.send({embed: embed})
