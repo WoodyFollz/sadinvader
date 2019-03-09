@@ -10,7 +10,7 @@ async function pong(message) {
 
 async function invite(message) {
   const app = await this.bot.fetchApplication()
-  const url = app.botPublic ? this.bot.generateInvite(['ADMINISTRATOR']) : 'Private bot.'
+  const url = app.botPublic ? await this.bot.generateInvite(['ADMINISTRATOR']) : 'Private bot.'
   const embed = new Discord.RichEmbed()
                 .setAuthor(app.name, app.iconURL)
                 .setDescription(`Owner: <@${app.owner.id}>`)
