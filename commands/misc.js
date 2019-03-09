@@ -1,3 +1,5 @@
+const Discord = require('discord.js')
+
 async function ping(message) {
   return this.reply('pong.')
 }
@@ -6,8 +8,16 @@ async function pong(message) {
   return this.reply('ping.')
 }
 
-async function hi(message) {
-  return this.reply('hello!')
+async function invite(message) {
+  const app = await this.bot.fetchApplication()
+  const url = app.botPublic ? this.bot.generateInvite(['ADMINISTRATOR']) : 'Private bot.'
+  const embed = new Discord.RichEmbed()
+                .setAuthor(app.name, app.iconURL)
+                .setDescription(`Owner: <@${app.owner.id}>`
+                .setColor(this.guild.me.displayHexColor)
+                .addField('Invitation', url)
+  
+  return this.send({embed: embed})
 }
 
 module.exports = () => [
@@ -18,8 +28,8 @@ module.exports = () => [
     name: 'pong',
     callback: pong
   }, {
-    name: 'hello',
-    callback: hi,
-    aliases: ['hi']
+    name: 'invitebot',
+    callback: invite,
+    aliases: ['ib']
   }
 ]

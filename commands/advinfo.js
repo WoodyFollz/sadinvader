@@ -15,9 +15,9 @@ async function userinfo(message, ...string) {
                          member.user.avatarURL)
               .setThumbnail(member.user.avatarURL)
               .setTitle('User Information')
-              .addField('Joined guild at',
+              .addField('Joined guild...',
                         moment(member.joinedTimestamp).fromNow())
-              .addField('Created account at',
+              .addField('Created account...',
                         moment(member.user.createdTimestamp).fromNow())
               .setColor(member.displayHexColor)
               .setFooter(`ID: ${member.id}`)
