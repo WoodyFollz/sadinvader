@@ -17,3 +17,11 @@ async function userinfo(message, ...string) {
               .addField('Joined at', 'idk')
   return this.send({embed: embed})
 }
+
+module.exports = () => [
+  {
+    name: 'userinfo',
+    callback: userinfo,
+    aliases: ['ui']
+  }
+]
