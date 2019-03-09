@@ -13,7 +13,7 @@ async function invite(message) {
   const url = app.botPublic ? this.bot.generateInvite(['ADMINISTRATOR']) : 'Private bot.'
   const embed = new Discord.RichEmbed()
                 .setAuthor(app.name, app.iconURL)
-                .setDescription(`Owner: <@${app.owner.id}>`
+                .setDescription(`Owner: <@${app.owner.id}>`)
                 .setColor(this.guild.me.displayHexColor)
                 .addField('Invitation', url)
   
