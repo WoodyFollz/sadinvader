@@ -58,7 +58,7 @@ bot.on('message', async(message) => {
     client: bot,
     bot: bot,
     prefix: prefix,
-    command: cmd,
+    commandName: cmd,
     message: message,
     guild: message.guild,
     channel: message.channel,
@@ -66,8 +66,10 @@ bot.on('message', async(message) => {
     member: message.member,
     reply: message.reply,
     send: function send(...params) {
-      this.channel.send(...params).catch(e => {
-        this.author.send(...params).catch()
+      return new Promise((resolve, reject) => {
+        this.channel.send(...params).then(resolve).catch(e => {
+          this.author.send(...params).then(resolve).catch()
+        })
       })
     }
   }
@@ -77,7 +79,12 @@ bot.on('message', async(message) => {
     'duplicate commands has been detected.'
     + '\n```\n' + command.map(x => x.name).join(', ') + '```'
   ).catch()
+  ctx.command = command
   
+  // Pass checks
+  var passed = bot.commands.checkContext(command, ctx)
+  if (passed === false) return
+  // If checks passed: run the command
   command[0].callback.call(ctx, message, ...args).catch(err => {
     errorHandler(err, message)
   })

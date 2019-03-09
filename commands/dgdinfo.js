@@ -9,16 +9,18 @@ async function userinfo(message, ...string) {
     member = utils.members.parse(this, string)
   }
   if (!member) member = this.member
+  var user = member.user
   
+  var desc = [
+    ['Account created', moment(user.createdTimestamp).fromNow()],
+    ['Joined guild', moment(member.joinedTimestamp).fromNow()]
+  ]
   var embed = new Discord.RichEmbed()
               .setAuthor(member.displayName,
                          member.user.avatarURL)
               .setThumbnail(member.user.avatarURL)
               .setTitle('User Information')
-              .addField('Joined guild...',
-                        moment(member.joinedTimestamp).fromNow())
-              .addField('Created account...',
-                        moment(member.user.createdTimestamp).fromNow())
+              .setDescription(desc.map(x => `**${x[0]}**: ${x[1]}`).join('\n'))
               .setColor(member.displayHexColor)
               .setFooter(`ID: ${member.id}`)
   return this.send({embed: embed})
@@ -28,6 +30,9 @@ module.exports = () => [
   {
     name: 'userinfo',
     callback: userinfo,
-    aliases: ['ui']
+    aliases: ['ui'],
+    checks: {
+      guildOnly: true
+    }
   }
 ]

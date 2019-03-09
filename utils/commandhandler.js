@@ -16,3 +16,21 @@ exports.get = function get(name) {
   }
   return []
 }
+
+exports.checkContext = function check(command, ctx) {
+  const checks = command.checks
+  if (!checks) return true
+  
+  if (checks.guildOnly) {
+    if (ctx.channel.type === 'dm') {
+      ctx.send('This command is only available in a guild.')
+      return false
+    }
+  }
+  
+  if (checks.ownerOnly) {
+    const app = await ctx.bot.fetchApplication()
+    
+    if (ctx.author.id != app.owner.id) return false
+  }
+}
