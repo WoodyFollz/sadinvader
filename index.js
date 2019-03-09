@@ -33,10 +33,11 @@ function parsePrefixes() {
 
 function setDiscordActivity() {
   const prefixes = parsePrefixes()
-  bot.setActivity({
+  bot.user.setActivity({
     name: `${prefixes[0]}help`,
     type: 1,
-    url: 'https://twitch.tv/#'
+    url: 'https://twitch.tv/#',
+    status: 'dnd'
   })
 }
 
