@@ -60,6 +60,7 @@ bot.on('message', async(message) => {
     prefix: prefix,
     command: cmd,
     message: message,
+    guild: message.guild,
     channel: message.channel,
     author: message.author,
     member: message.member,

@@ -14,7 +14,7 @@ exports.members.parse = function(ctx, string) {
   string = string.toLowerCase()
   
   // ID Parsing
-  var id = parseInt(string) || 0
+  var id = parseInt(string.replace(/<\@!>/g, '')) || 0
   var search = ctx.guild.members.get(id)
   if (search) return search
   
