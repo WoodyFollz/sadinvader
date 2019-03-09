@@ -15,7 +15,7 @@ function errorHandler(error, message) {
   }
 }
 
-bot.log = (text) => console.log(`@${bot.tag}: ${text}`)
+bot.log = (text) => console.log(`@${bot.user.tag}: ${text}`)
 
 const files = fs.readdirSync('./commands')
 files.forEach(file => {
@@ -33,8 +33,7 @@ function parsePrefixes() {
 
 function setDiscordActivity() {
   const prefixes = parsePrefixes()
-  bot.user.setActivity({
-    name: `${prefixes[0]}help`,
+  bot.user.setActivity(`${prefixes[0]}help`, {
     type: 1,
     url: 'https://twitch.tv/#',
     status: 'dnd'
