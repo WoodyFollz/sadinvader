@@ -14,7 +14,7 @@ exports.members.parse = function(ctx, string) {
   string = string.toLowerCase()
   
   // ID Parsing
-  var id = parseInt(string.replace(/<\@!>/g, '')) || 0
+  var id = parseInt(string.replace(/[\\<>@!]/g, '')) || 0
   var search = ctx.guild.members.get(id)
   if (search) return search
   
@@ -25,6 +25,6 @@ exports.members.parse = function(ctx, string) {
   if (search[0]) return search[0]
   
   // Tag Parsing (Less Rude)
-  var search = members.filter(x => x.user.tag.toLowerCase().includes(string))
+  var search = members.filter(x => ('@'+x.user.tag.toLowerCase()).includes(string))
   if (search[0]) return search[0]
 }
