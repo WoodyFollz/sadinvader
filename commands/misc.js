@@ -10,13 +10,16 @@ async function hi(message) {
   return this.reply('hello!')
 }
 
-module.exports = () => [{
-  name: 'ping',
-  callback: ping
-}, {
-  name: 'pong',
-  callback: pong
-}, {
-  name: 'hi',
-  callback: hi
-}]
+module.exports = () => [
+  {
+    name: 'ping',
+    callback: ping
+  }, {
+    name: 'pong',
+    callback: pong
+  }, {
+    name: 'hello',
+    callback: hi,
+    aliases: ['hi']
+  }
+]

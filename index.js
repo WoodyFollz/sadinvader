@@ -10,6 +10,7 @@ function errorHandler(error, message) {
   bot.errors[id] = error.stack
   
   bot.log('Error reported at #' + id)
+  console.error(error)
   if (message) {
     message.reply('an error has been occured with ID ' + id)
   }
