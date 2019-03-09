@@ -7,14 +7,14 @@ exports.members = {}
 function sortABCOrder(a, b) {
 	a = a.user.tag.toLowerCase()
 	b = b.user.tag.toLowerCase()
-	return a < b ? 1 : (a > b ? -1 : 0)
+	return a < b ? -1 : (a > b ? 1 : 0)
 }
 
 exports.members.parse = function(ctx, string) {
   string = string.toLowerCase()
   
   // ID Parsing
-  var id = parseInt(string.replace(/[\\<>@!]/g, '')) || 0
+  var id = string.replace(/[\\<>@!]/g, '') || 0
   var search = ctx.guild.members.get(id)
   if (search) return search
   
