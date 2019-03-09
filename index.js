@@ -40,7 +40,7 @@ function setDiscordActivity() {
   })
 }
 
-bot.on('ready', () => bot.log('Ready to go.'); setDiscordActivity())
+bot.on('ready', () => {bot.log('Ready to go.'); setDiscordActivity()})
 
 bot.on('message', async(message) => {
   const prefixes = parsePrefixes()
