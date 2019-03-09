@@ -24,18 +24,26 @@ files.forEach(file => {
   console.log('> File loaded ' + file)
 })
 
+function parsePrefixes() {
+  const prefixes = process.env.PREFIXES.split(',')
+  prefixes.push(`<@${bot.user.id}>`)
+  
+  return prefixes
+}
+
 function setDiscordActivity() {
+  const prefixes = parsePrefixes()
   bot.setActivity({
-    name: 'Hello.',
-    type: 1
+    name: `${prefixes[0]}help`,
+    type: 1,
+    url: 'https://twitch.tv/#'
   })
 }
 
-bot.on('ready', () => bot.log('Ready to go.'))
+bot.on('ready', () => bot.log('Ready to go.'); setDiscordActivity())
 
 bot.on('message', async(message) => {
-  const prefixes = process.env.PREFIXES.split(',')
-  prefixes.push(`<@${bot.user.id}>`)
+  const prefixes = parsePrefixes()
   const content  = message.content.toLowerCase()
   
   var prefix = prefixes.filter(x => content.startsWith(x))[0]
@@ -54,7 +62,8 @@ bot.on('message', async(message) => {
     channel: message.channel,
     author: message.author,
     member: message.member,
-    reply: message.reply
+    reply: message.reply,
+    send: message.channel.send
   }
   const command = bot.commands.get(cmd)
   if (command.length === 0) return
