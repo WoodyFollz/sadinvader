@@ -64,7 +64,11 @@ bot.on('message', async(message) => {
     author: message.author,
     member: message.member,
     reply: message.reply,
-    send: message.channel.send
+    send: function send(...params) {
+      this.channel.send(...params).catch(e => {
+        this.author.send(...params).catch()
+      })
+    }
   }
   const command = bot.commands.get(cmd)
   if (command.length === 0) return

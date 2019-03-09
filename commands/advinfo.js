@@ -5,7 +5,7 @@ async function userinfo(message, ...string) {
   var member
   if (string.length) {
     string = string.join(' ')
-    member = utils.members.get(this, string)
+    member = utils.members.parse(this, string)
   }
   if (!member) member = this.member
   
