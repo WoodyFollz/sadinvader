@@ -10,11 +10,15 @@ async function userinfo(message, ...string) {
   if (!member) member = this.member
   
   var embed = new Discord.RichEmbed()
-              .setAuthor(`@${member.user.tag}`,
+              .setAuthor(member.displayName,
                          member.user.avatarURL)
               .setThumbnail(member.user.avatarURL)
               .setTitle('User Information')
-              .addField('Joined at', 'idk')
+              .addField('Joined guild at', member.joinedAt)
+              .addField('Created account at',
+                        member.user.createdAt)
+              .setColor(member.displayHexColor)
+              .setFooter(`ID: ${member.id}`)
   return this.send({embed: embed})
 }
 
