@@ -2,6 +2,7 @@ function formatCode(code) {
   if (code.startsWith('```')) {
     return code.split('\n').slice(1, -1).join('\n')
   }
+  return code
 }
 
 async function evaluate(message, ...args) {
