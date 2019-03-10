@@ -30,10 +30,11 @@ async function evaluate(message, ...args) {
   })
 }
 
-module.exports = () => {
-  name: 'eval',
-  callback: evaluate,
-  checks: {
-    ownerOnly: true
-  }
-}
+module.exports = () => [
+  {
+    name: 'eval',
+    callback: evaluate,
+    checks: {
+      ownerOnly: true
+    }
+]
