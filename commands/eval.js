@@ -37,4 +37,5 @@ module.exports = () => [
     checks: {
       ownerOnly: true
     }
+  }
 ]
