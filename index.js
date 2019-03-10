@@ -41,7 +41,10 @@ function setDiscordActivity() {
   })
 }
 
-bot.on('ready', () => {bot.log('Ready to go.'); setDiscordActivity()})
+bot.on('ready', async() => {
+  setDiscordActivity()
+  bot.log('Fully loaded.')
+})
 
 bot.on('message', async(message) => {
   const prefixes = parsePrefixes()
@@ -65,7 +68,7 @@ bot.on('message', async(message) => {
     author: message.author,
     member: message.member,
     reply: message.reply,
-    send: function send(...params) {
+    send: functsetDiscordActivity) {
       return new Promise((resolve, reject) => {
         this.channel.send(...params).then(resolve).catch(e => {
           this.author.send(...params).then(resolve).catch()
@@ -82,7 +85,7 @@ bot.on('message', async(message) => {
   ctx.command = command
   
   // Pass checks
-  var passed = bot.commands.checkContext(command, ctx)
+  var passed = await bot.commands.checkContext(command, ctx)
   if (passed === false) return
   // If checks passed: run the command
   command[0].callback.call(ctx, message, ...args).catch(err => {

@@ -17,7 +17,7 @@ exports.get = function get(name) {
   return []
 }
 
-exports.checkContext = function check(command, ctx) {
+exports.checkContext = async function check(command, ctx) {
   const checks = command.checks
   if (!checks) return true
   
