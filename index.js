@@ -68,7 +68,7 @@ bot.on('message', async(message) => {
     author: message.author,
     member: message.member,
     reply: message.reply,
-    send: functsetDiscordActivity) {
+    send: function(...params) {
       return new Promise((resolve, reject) => {
         this.channel.send(...params).then(resolve).catch(e => {
           this.author.send(...params).then(resolve).catch()
