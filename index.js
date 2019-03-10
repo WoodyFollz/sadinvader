@@ -35,8 +35,7 @@ function parsePrefixes() {
 function setDiscordActivity() {
   const prefixes = parsePrefixes()
   const status = `${prefixes[0]}help | `
-               + `${bot.guilds.length} guilds &`
-               + `${bot.users.length} users`
+               + `${bot.guilds.size} guilds`
   bot.user.setStatus('idle')
   bot.user.setActivity(status, {type: 3})
 }
