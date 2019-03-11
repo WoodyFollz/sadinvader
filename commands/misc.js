@@ -22,7 +22,7 @@ async function invite(message) {
 }
 
 async function uptime(message) {
-  var uptime = moment(this.bot.uptime).format('HH:MM:SS')
+  var uptime = moment(this.bot.uptime).format('DDDD:HH:mm:ss')
   return await this.send(`Started ${uptime} ago.`)
 }
 
