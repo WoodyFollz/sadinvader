@@ -22,8 +22,8 @@ async function invite(message) {
 }
 
 async function uptime(message) {
-  var uptime = moment(this.bot.uptime).fromNow()
-  return await this.send('Started ' + uptime)
+  var uptime = moment(this.bot.uptime).format('HH:MM:SS')
+  return await this.send(`Started ${uptime} ago.`)
 }
 
 module.exports = () => [
