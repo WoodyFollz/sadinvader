@@ -12,8 +12,8 @@ async function userinfo(message, ...string) {
   var user = member.user
 
   var desc = [
-    ['Account created', moment(user.createdTimestamp).format('L')],
-    ['Joined guild', moment(member.joinedTimestamp).format('L')]
+    ['Account created', moment(user.createdTimestamp).format('LL')],
+    ['Joined guild', moment(member.joinedTimestamp).format('LL')]
   ]
   var embed = new Discord.RichEmbed()
               .setAuthor(member.displayName,
