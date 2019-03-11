@@ -22,8 +22,10 @@ async function invite(message) {
 }
 
 async function uptime(message) {
-  var uptime = moment(this.bot.uptime).format('DDDD:HH:mm:ss')
-  return await this.send(`Started ${uptime} ago.`)
+  const uptime = moment(this.bot.uptime)
+  var days = uptime.dayOfYear() ? `${uptime.dayOfYear()} days ` : ''
+
+  return await this.send(`Started ${days}${uptime.format('HH:mm:ss')} ago.`)
 }
 
 module.exports = () => [
