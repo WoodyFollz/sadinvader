@@ -1,4 +1,5 @@
 const Discord = require('discord.js')
+const moment  = require('moment')
 
 async function ping(message) {
   return this.reply('pong.')
@@ -16,8 +17,13 @@ async function invite(message) {
                 .setDescription(`Owner: <@${app.owner.id}>`)
                 .setColor(this.guild.me.displayHexColor)
                 .addField('Invitation', url)
-  
+
   return this.send({embed: embed})
+}
+
+async function uptime(message) {
+  var uptime = moment(this.bot.uptime).fromNow()
+  return await this.send('Started ' + uptime)
 }
 
 module.exports = () => [
@@ -31,5 +37,8 @@ module.exports = () => [
     name: 'invitebot',
     callback: invite,
     aliases: ['ib']
+  }, {
+    name: 'uptime',
+    callback: uptime
   }
 ]
