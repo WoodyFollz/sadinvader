@@ -25,7 +25,7 @@ async function uptime(message) {
   const uptime = moment(this.bot.uptime)
   var days = uptime.dayOfYear() - 1 ? `${uptime.dayOfYear() - 1} days ` : ''
 
-  return await this.reply(`bot started since ${days}${uptime.format('HH:mm:ss')}.`)
+  return await this.reply(`bot started since **${days}${uptime.format('HH:mm:ss')}**.`)
 }
 
 module.exports = () => [
