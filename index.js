@@ -53,7 +53,7 @@ bot.on('message', async(message) => {
   if (!prefix) return // Not a command.
 
   var args = message.content.slice(prefix.length).split(' ')
-  args = args.filter(x => x.length.replace('\n', '') > 0)
+  args = args.filter(x => x.replace('\n', '').length > 0)
   var cmd  = args.shift().toLowerCase()
 
   const ctx = {
