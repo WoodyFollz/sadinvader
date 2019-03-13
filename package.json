@@ -4,11 +4,11 @@
   "description": "Test Bot for features",
   "main": "index.js",
   "scripts": {
+    "start": "node .",
     "test": "exit"
   },
   "keywords": [
-    "testbot",
-    "noobs"
+    "testbot"
   ],
   "author": "Danny Hpy",
   "license": "ISC",
