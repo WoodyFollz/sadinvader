@@ -8,7 +8,7 @@ bot.errors = []
 function errorHandler(error, message) {
   var id = bot.errors.length
   bot.errors[id] = error.stack
-  
+
   bot.log('Error reported at #' + id)
   console.error(error)
   if (message) {
@@ -28,7 +28,7 @@ files.forEach(file => {
 function parsePrefixes() {
   const prefixes = process.env.PREFIXES.split(',')
   prefixes.push(`<@${bot.user.id}>`)
-  
+
   return prefixes
 }
 
@@ -48,14 +48,14 @@ bot.on('ready', async() => {
 bot.on('message', async(message) => {
   const prefixes = parsePrefixes()
   const content  = message.content.toLowerCase()
-  
+
   var prefix = prefixes.filter(x => content.startsWith(x))[0]
   if (!prefix) return // Not a command.
-  
+
   var args = message.content.slice(prefix.length).split(' ')
-  args = args.filter(x => x.length > 0)
+  args = args.filter(x => x.length.replace('\n', '') > 0)
   var cmd  = args.shift().toLowerCase()
-  
+
   const ctx = {
     client: bot,
     bot: bot,
@@ -82,7 +82,7 @@ bot.on('message', async(message) => {
     + '\n```\n' + command.map(x => x.name).join(', ') + '```'
   ).catch()
   ctx.command = command
-  
+
   // Pass checks
   var passed = await bot.commands.checkContext(command, ctx)
   if (passed === false) return
