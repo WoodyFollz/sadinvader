@@ -94,4 +94,4 @@ bot.on('message', async(message) => {
 
 bot.on('error', errorHandler)
 
-bot.login()
+bot.login(process.env.DISCORD_TOKEN)
