@@ -26,7 +26,7 @@ files.forEach(file => {
 })
 
 function parsePrefixes() {
-  const prefixes = process.env.PREFIXES.split(',')
+  const prefixes = process.env.DISCORD_PREFIXES.split(',')
   prefixes.push(`<@${bot.user.id}>`)
 
   return prefixes
@@ -94,4 +94,4 @@ bot.on('message', async(message) => {
 
 bot.on('error', errorHandler)
 
-bot.login(process.env.TOKEN)
+bot.login()
