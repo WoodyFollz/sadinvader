@@ -13,6 +13,7 @@ async function helpCommand(message) {
               .setColor(this.guild.me.displayHexColor)
               .setDescription(desc.join('\n'))
               .setFooter(`${cmds.length} commands available!`)
+  return await this.send({embed: embed})
 }
 
 module.exports = () => [
