@@ -1,4 +1,5 @@
 {
   "DISCORD_TOKEN": "Provide here your bot token.",
-  "DISCORD_PREFIXES": ["A", "list", "of", "prefixes."]
+  "DISCORD_PREFIXES": ["A", "list", "of", "prefixes."],
+  "DISCORD_OWNER": "ID of the owner (optional), you can pass a list"
 }

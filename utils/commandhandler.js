@@ -20,18 +20,30 @@ exports.get = function get(name) {
 
 exports.checkContext = async function check(command, ctx) {
   const checks = command.checks
-  if (!checks) return true
+  if (checks === undefined || Object.keys(checks).length == 0)
+    return true
 
+  /* [LOCAL CHECK] Is it in a guild? */
   if (checks.guildOnly) {
     if (ctx.channel.type === 'dm') {
-      ctx.send('This command is only available in a guild.')
+      ctx.bot.emit('failedCheck_guildOnly', ctx)
       return false
     }
   }
 
+  /* [LOCAL CHECK] Is the author owner? */
   if (checks.ownerOnly) {
-    const app = await ctx.bot.fetchApplication()
+    var owners
+    if (ctx.bot.settings.DISCORD_OWNER) {
+      owners = ctx.bot.settings.DISCORD_OWNER
+      if (!(owners instanceof Array)) owners = owners.split('|')
+    } else {
+      owners = [await ctx.bot.fetchApplication().owner.id]
+    }
 
-    if (ctx.author.id != app.owner.id) return false
+    if (!owners.includes(ctx.author.id)) {
+      ctx.bot.emit('failedCheck_ownerOnly', ctx)
+      return false
+    }
   }
 }
