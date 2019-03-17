@@ -8,10 +8,13 @@
     "test": "exit"
   },
   "keywords": [
-    "testbot"
+    "discord.js",
+    "bot",
+    "discord"
   ],
   "author": "Danny Hpy",
   "license": "ISC",
+  "repository": "https://github.com/Dannyiy/sadinvader",
   "dependencies": {
     "discord.js": "^11.4.2",
     "moment": "^2.24.0"
