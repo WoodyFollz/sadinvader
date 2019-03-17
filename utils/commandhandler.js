@@ -1,7 +1,7 @@
 const commands = []
 exports.stored = commands
 
-exports.add = (obj) => commands[commands.length] = obj
+exports.add = (obj) => commands.push(obj)
 
 exports.get = function get(name) {
   //check: exact name
