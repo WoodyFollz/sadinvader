@@ -34,7 +34,7 @@ function parsePrefixes() {
   if (!(bot.settings.DISCORD_PREFIXES instanceof Array))
     prefixes = prefixes.split('|')
   prefixes.push(`<@${bot.user.id}>`)
-  
+
   return prefixes
 }
 
@@ -68,6 +68,7 @@ bot.on('message', async(message) => {
     bot: bot,
     prefix: prefix,
     commandName: cmd,
+    args: args,
     message: message,
     guild: message.guild,
     channel: message.channel,
