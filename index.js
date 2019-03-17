@@ -2,6 +2,9 @@ const Discord = require('discord.js')
 const fs      = require('fs')
 
 const bot = new Discord.Client()
+bot.settings = fs.existsSync('./settings.json')
+                            ? require('./settings.json')
+                            : process.env
 bot.commands = require('./utils/commandhandler.js')
 bot.errors = []
 
@@ -26,9 +29,12 @@ files.forEach(file => {
 })
 
 function parsePrefixes() {
-  const prefixes = process.env.DISCORD_PREFIXES.split(',')
-  prefixes.push(`<@${bot.user.id}>`)
+  var prefixes = bot.settings.DISCORD_PREFIXES
 
+  if (!(bot.settings.DISCORD_PREFIXES instanceof Array))
+    prefixes = prefixes.split('|')
+  prefixes.push(`<@${bot.user.id}>`)
+  
   return prefixes
 }
 
@@ -46,6 +52,7 @@ bot.on('ready', async() => {
 })
 
 bot.on('message', async(message) => {
+  if (bot.user.bot && message.author === bot.user) return // prevent command loop
   const prefixes = parsePrefixes()
   const content  = message.content.toLowerCase()
 
@@ -94,4 +101,4 @@ bot.on('message', async(message) => {
 
 bot.on('error', errorHandler)
 
-bot.login(process.env.DISCORD_TOKEN)
+bot.login(bot.settings.DISCORD_TOKEN)
